@@ -6,8 +6,34 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DE3143CA1D7EF43D00717720 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3143C91D7EF43D00717720 /* Foundation.framework */; };
+		DE3143D71D7EF44900717720 /* AppInfoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143CB1D7EF44900717720 /* AppInfoWidget.swift */; };
+		DE3143D81D7EF44900717720 /* BackgroundWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143CC1D7EF44900717720 /* BackgroundWidget.swift */; };
+		DE3143D91D7EF44900717720 /* CursesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143CD1D7EF44900717720 /* CursesHelper.swift */; };
+		DE3143DA1D7EF44900717720 /* GUITypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143CE1D7EF44900717720 /* GUITypes.swift */; };
+		DE3143DB1D7EF44900717720 /* InputPopupWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143CF1D7EF44900717720 /* InputPopupWidget.swift */; };
+		DE3143DE1D7EF44900717720 /* MenuWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143D21D7EF44900717720 /* MenuWidget.swift */; };
+		DE3143DF1D7EF44900717720 /* ModulesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143D41D7EF44900717720 /* ModulesWidget.swift */; };
+		DE3143E01D7EF44900717720 /* PopupWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143D51D7EF44900717720 /* PopupWidget.swift */; };
+		DE3143E11D7EF44900717720 /* TitleAndFooterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DE3143BA1D7EF2C900717720 /* IOGUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IOGUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE3143C91D7EF43D00717720 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DE3143CB1D7EF44900717720 /* AppInfoWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfoWidget.swift; sourceTree = "<group>"; };
+		DE3143CC1D7EF44900717720 /* BackgroundWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundWidget.swift; sourceTree = "<group>"; };
+		DE3143CD1D7EF44900717720 /* CursesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CursesHelper.swift; sourceTree = "<group>"; };
+		DE3143CE1D7EF44900717720 /* GUITypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GUITypes.swift; sourceTree = "<group>"; };
+		DE3143CF1D7EF44900717720 /* InputPopupWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPopupWidget.swift; sourceTree = "<group>"; };
+		DE3143D01D7EF44900717720 /* IOGUI-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IOGUI-Bridging-Header.h"; sourceTree = "<group>"; };
+		DE3143D11D7EF44900717720 /* MakefileSub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MakefileSub; sourceTree = "<group>"; };
+		DE3143D21D7EF44900717720 /* MenuWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuWidget.swift; sourceTree = "<group>"; };
+		DE3143D31D7EF44900717720 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		DE3143D41D7EF44900717720 /* ModulesWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModulesWidget.swift; sourceTree = "<group>"; };
+		DE3143D51D7EF44900717720 /* PopupWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupWidget.swift; sourceTree = "<group>"; };
+		DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleAndFooterWidget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -15,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3143CA1D7EF43D00717720 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26,6 +53,7 @@
 			children = (
 				DE3143BC1D7EF2C900717720 /* IOGUI */,
 				DE3143BB1D7EF2C900717720 /* Products */,
+				DE3143C81D7EF43C00717720 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -40,8 +68,28 @@
 		DE3143BC1D7EF2C900717720 /* IOGUI */ = {
 			isa = PBXGroup;
 			children = (
+				DE3143CB1D7EF44900717720 /* AppInfoWidget.swift */,
+				DE3143CC1D7EF44900717720 /* BackgroundWidget.swift */,
+				DE3143CD1D7EF44900717720 /* CursesHelper.swift */,
+				DE3143CE1D7EF44900717720 /* GUITypes.swift */,
+				DE3143CF1D7EF44900717720 /* InputPopupWidget.swift */,
+				DE3143D01D7EF44900717720 /* IOGUI-Bridging-Header.h */,
+				DE3143D11D7EF44900717720 /* MakefileSub */,
+				DE3143D21D7EF44900717720 /* MenuWidget.swift */,
+				DE3143D31D7EF44900717720 /* module.modulemap */,
+				DE3143D41D7EF44900717720 /* ModulesWidget.swift */,
+				DE3143D51D7EF44900717720 /* PopupWidget.swift */,
+				DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */,
 			);
 			path = IOGUI;
+			sourceTree = "<group>";
+		};
+		DE3143C81D7EF43C00717720 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE3143C91D7EF43D00717720 /* Foundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,7 +134,8 @@
 				TargetAttributes = {
 					DE3143B91D7EF2C900717720 = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -122,6 +171,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE3143D71D7EF44900717720 /* AppInfoWidget.swift in Sources */,
+				DE3143E11D7EF44900717720 /* TitleAndFooterWidget.swift in Sources */,
+				DE3143D91D7EF44900717720 /* CursesHelper.swift in Sources */,
+				DE3143D81D7EF44900717720 /* BackgroundWidget.swift in Sources */,
+				DE3143DB1D7EF44900717720 /* InputPopupWidget.swift in Sources */,
+				DE3143E01D7EF44900717720 /* PopupWidget.swift in Sources */,
+				DE3143DE1D7EF44900717720 /* MenuWidget.swift in Sources */,
+				DE3143DA1D7EF44900717720 /* GUITypes.swift in Sources */,
+				DE3143DF1D7EF44900717720 /* ModulesWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,19 +285,33 @@
 		DE3143C31D7EF2C900717720 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = IOGUI/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"Darwin=1",
+					"$(inherited)",
+				);
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-lncurses";
+				OTHER_SWIFT_FLAGS = "-DXcode -DDarwin -DDO_NOT_USE_CURSES_ASCII";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilkerozcan.IOGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/IOGUI/IOGUI-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -247,19 +319,28 @@
 		DE3143C41D7EF2C900717720 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = IOGUI/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = "Darwin=1";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "-lncurses";
+				OTHER_SWIFT_FLAGS = "-DXcode -DDarwin -DDO_NOT_USE_CURSES_ASCII";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ilkerozcan.IOGUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/IOGUI/IOGUI-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -283,6 +364,7 @@
 				DE3143C41D7EF2C900717720 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
