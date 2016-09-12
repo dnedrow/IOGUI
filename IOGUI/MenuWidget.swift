@@ -18,6 +18,13 @@ public struct GUIMenuChoices {
 	var choiceName: String
 	var choiceCode: Int
 	
+	public var getChoiceCode: Int {
+		
+		get {
+			return self.choiceCode
+		}
+	}
+	
 	public init(choiceName: String, choiceCode: Int) {
 		
 		self.choiceName = choiceName
@@ -64,6 +71,13 @@ public struct MenuWidget {
 	private var firstChoiceIdx = 0
 	private var choicesLineCount = 0
 	private var selectedChoiceCode = -1
+	
+	public var getCurrentChoice: GUIMenuChoices {
+		
+		get {
+			return self.choices[currentChoiceIdx]
+		}
+	}
 	
 #if swift(>=3)
 

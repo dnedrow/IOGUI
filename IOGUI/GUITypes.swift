@@ -13,7 +13,7 @@
 #endif
 import Foundation
 
-enum WidgetUIColor: Int32 {
+public enum WidgetUIColor: Int32 {
 	
 	case Background = 1
 	case FooterBackground = 2
@@ -48,8 +48,10 @@ public enum MainGuiActions {
 
 #if swift(>=3)
 public typealias MainGuiDelegate = (_ action: MainGuiActions) -> ()
+public typealias MainGuiKeyDelegate = (_ keyCode: Int32) -> ()
 #else
 public typealias MainGuiDelegate = (action: MainGuiActions) -> ()
+public typealias MainGuiKeyDelegate = (keyCode: Int32) -> ()
 #endif
 
 public struct GUIWidgets {
@@ -73,6 +75,22 @@ public struct GUIWidgets {
 	public var modules: ModulesWidget?
 	public var background: BackgroundWidget?
 	public var inputPopup: InputPopupWidget?
+	public var textWidgets: [TextWidget]?
+	public var keyDelegate: MainGuiKeyDelegate?
+	
+	public var getLines: Int32 {
+		
+		get {
+			return LINES
+		}
+	}
+	
+	public var getCols: Int32 {
+		
+		get {
+			return COLS
+		}
+	}
 	
 	public init(delegate: MainGuiDelegate) {
 		
@@ -336,6 +354,40 @@ public struct GUIWidgets {
 		return (background != nil) ? true : false
 	}
 	
+	public mutating func initTextWidget(widget: TextWidget) -> Int {
+		
+		if(self.textWidgets == nil) {
+			
+			self.textWidgets = [TextWidget]()
+		}
+		
+		let widgetIdx = self.textWidgets!.count
+		self.textWidgets!.append(widget)
+		widget.draw()
+		wrefresh(mainWindow)
+		
+		return widgetIdx
+	}
+	
+	public mutating func deinitTextWidget() {
+		
+		if(self.textWidgets != nil) {
+		
+			for var tWidget in self.textWidgets! {
+				
+				tWidget.deinitWidget()
+			}
+			
+			self.textWidgets = nil
+			wrefresh(mainWindow)
+		}
+	}
+	
+	public func hasTextWidget() -> Bool {
+		
+		return (textWidgets != nil) ? true : false
+	}
+	
 	mutating func resizeAll() {
 		
 		wclear(self.mainWindow)
@@ -353,6 +405,14 @@ public struct GUIWidgets {
 		if(appInfo != nil) {
 			
 			appInfo?.resize()
+		}
+		
+		if(self.textWidgets != nil) {
+			
+			for var tWidget in self.textWidgets! {
+				
+				tWidget.resize()
+			}
 		}
 		
 		if(menu != nil) {
@@ -382,6 +442,7 @@ public struct GUIWidgets {
 		
 		deinitTitleWidget()
 		deinitAppInfoWidget()
+		deinitTextWidget()
 		deinitMenuWidget()
 		deinitModuleWidget()
 		deinitPopupWidget()
@@ -391,28 +452,6 @@ public struct GUIWidgets {
 	}
 	
 	mutating func sendKeyEventToWidget(keycode: Int32) {
-		
-		if(titleAndFooter != nil) {
-			
-		#if swift(>=3)
-			
-			titleAndFooter?.keyEvent(keyCode: keycode)
-		#elseif swift(>=2.2) && os(OSX)
-			
-			titleAndFooter?.keyEvent(keycode)
-		#endif
-		}
-		
-		if(appInfo != nil) {
-			
-		#if swift(>=3)
-			
-			appInfo?.keyEvent(keyCode: keycode)
-		#elseif swift(>=2.2) && os(OSX)
-			
-			appInfo?.keyEvent(keycode)
-		#endif
-		}
 		
 		if(popup != nil) {
 			
@@ -491,6 +530,10 @@ public struct GUIWidgets {
 		}else{
 			
 			self.sendKeyEventToWidget(keycode: currentKey)
+			
+			if(self.keyDelegate != nil) {
+				self.keyDelegate!(currentKey)
+			}
 		}
 	#else
 		if(currentKey == KEY_RESIZE) {
@@ -543,6 +586,10 @@ public struct GUIWidgets {
 			
 			self.sendKeyEventToWidget(currentKey)
 		#endif
+			
+			if(self.keyDelegate != nil) {
+				self.keyDelegate!(currentKey)
+			}
 		}
 	#endif
 	}

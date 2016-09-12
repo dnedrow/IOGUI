@@ -155,9 +155,4 @@ public struct AppInfoWidget {
 		
 		wrefresh(appInfoWindow)
 	}
-	
-	func keyEvent(keyCode: Int32) {
-		// pass
-	}
-
 }

@@ -15,6 +15,7 @@ import Foundation
 
 public struct BackgroundWidget {
 	
+	private var bgColor: WidgetUIColor!
 	
 #if swift(>=3)
 #if os(Linux)
@@ -22,9 +23,10 @@ public struct BackgroundWidget {
 	
 	private var mainBgWindow: UnsafeMutablePointer<WINDOW>!
 	
-	public init(mainWindow: UnsafeMutablePointer<WINDOW>) {
+	public init(mainWindow: UnsafeMutablePointer<WINDOW>, bgColor: WidgetUIColor) {
 	
 		self.mainWindow = mainWindow
+		self.bgColor = bgColor
 		initWindows()
 	}
 #else
@@ -32,9 +34,10 @@ public struct BackgroundWidget {
 	
 	private var mainBgWindow: OpaquePointer!
 	
-	public init(mainWindow: OpaquePointer) {
+	public init(mainWindow: OpaquePointer, bgColor: WidgetUIColor) {
 	
 		self.mainWindow = mainWindow
+		self.bgColor = bgColor
 		initWindows()
 	}
 #endif
@@ -44,9 +47,10 @@ public struct BackgroundWidget {
 	
 	private var mainBgWindow: COpaquePointer!
 	
-	public init(mainWindow: COpaquePointer) {
+	public init(mainWindow: COpaquePointer, bgColor: WidgetUIColor) {
 	
 		self.mainWindow = mainWindow
+		self.bgColor = bgColor
 		initWindows()
 	}
 #endif
@@ -57,9 +61,9 @@ public struct BackgroundWidget {
 		self.mainBgWindow = subwin(mainWindow, LINES, COLS, 0, 0)
 		
 	#if os(Linux)
-		wbkgd(self.mainBgWindow, UInt(COLOR_PAIR(WidgetUIColor.CyanBackground.rawValue)))
+		wbkgd(self.mainBgWindow, UInt(COLOR_PAIR(self.bgColor.rawValue)))
 	#else
-		wbkgd(self.mainBgWindow, UInt32(COLOR_PAIR(WidgetUIColor.CyanBackground.rawValue)))
+		wbkgd(self.mainBgWindow, UInt32(COLOR_PAIR(self.bgColor.rawValue)))
 	#endif
 		keypad(self.mainBgWindow, true)
 	}

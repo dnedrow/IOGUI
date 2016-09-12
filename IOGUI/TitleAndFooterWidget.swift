@@ -185,8 +185,4 @@ public struct TitleAndFooterWidget {
 	
 		wrefresh(mainWindow)
 	}
-	
-	func keyEvent(keyCode: Int32) {
-		// pass
-	}
 }
