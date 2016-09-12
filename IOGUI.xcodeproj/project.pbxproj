@@ -34,6 +34,9 @@
 		DE3143D41D7EF44900717720 /* ModulesWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModulesWidget.swift; sourceTree = "<group>"; };
 		DE3143D51D7EF44900717720 /* PopupWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupWidget.swift; sourceTree = "<group>"; };
 		DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleAndFooterWidget.swift; sourceTree = "<group>"; };
+		DEE3B06F1D876418000FA7F5 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		DEE3B0721D87644C000FA7F5 /* Build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = Build.sh; path = Travis/Build.sh; sourceTree = "<group>"; };
+		DEE3B0731D87644C000FA7F5 /* DownloadDocker.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = DownloadDocker.sh; path = Travis/DownloadDocker.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +54,9 @@
 		DE3143B01D7EF2C800717720 = {
 			isa = PBXGroup;
 			children = (
+				DEE3B06F1D876418000FA7F5 /* .travis.yml */,
 				DE3143BC1D7EF2C900717720 /* IOGUI */,
+				DEE3B0711D87643D000FA7F5 /* Travis */,
 				DE3143BB1D7EF2C900717720 /* Products */,
 				DE3143C81D7EF43C00717720 /* Frameworks */,
 			);
@@ -90,6 +95,15 @@
 				DE3143C91D7EF43D00717720 /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEE3B0711D87643D000FA7F5 /* Travis */ = {
+			isa = PBXGroup;
+			children = (
+				DEE3B0721D87644C000FA7F5 /* Build.sh */,
+				DEE3B0731D87644C000FA7F5 /* DownloadDocker.sh */,
+			);
+			name = Travis;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
