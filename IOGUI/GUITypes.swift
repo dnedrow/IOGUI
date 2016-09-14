@@ -76,6 +76,7 @@ public struct GUIWidgets {
 	public var background: BackgroundWidget?
 	public var inputPopup: InputPopupWidget?
 	public var textWidgets: [TextWidget]?
+	public var formWidget: FormWidget?
 	public var keyDelegate: MainGuiKeyDelegate?
 	
 	public var getLines: Int32 {
@@ -388,6 +389,32 @@ public struct GUIWidgets {
 		return (textWidgets != nil) ? true : false
 	}
 	
+	public mutating func initFormWidget(widget: FormWidget) {
+		
+		if(self.formWidget != nil) {
+			deinitFormWidget()
+		}
+		
+		self.formWidget = widget
+		self.formWidget?.draw()
+		wrefresh(mainWindow)
+	}
+	
+	public mutating func deinitFormWidget() {
+		
+		if(formWidget != nil) {
+			
+			formWidget?.deinitWidget()
+			formWidget = nil
+			wrefresh(mainWindow)
+		}
+	}
+	
+	public func hasFormWidget() -> Bool {
+		
+		return (formWidget != nil) ? true : false
+	}
+	
 	mutating func resizeAll() {
 		
 		wclear(self.mainWindow)
@@ -425,6 +452,11 @@ public struct GUIWidgets {
 			modules?.resize()
 		}
 		
+		if(formWidget != nil) {
+			
+			formWidget?.resize()
+		}
+		
 		if(popup != nil) {
 			
 			popup?.resize()
@@ -445,6 +477,7 @@ public struct GUIWidgets {
 		deinitTextWidget()
 		deinitMenuWidget()
 		deinitModuleWidget()
+		deinitFormWidget()
 		deinitPopupWidget()
 		deinitBackgroundWidget()
 		deinitInputPopupWidget()
@@ -497,6 +530,17 @@ public struct GUIWidgets {
 			
 			modules?.keyEvent(keycode)
 		#endif
+		}
+		
+		if(formWidget != nil) {
+			
+			#if swift(>=3)
+				
+				formWidget?.keyEvent(keyCode: keycode)
+			#elseif swift(>=2.2) && os(OSX)
+				
+				formWidget?.keyEvent(keycode)
+			#endif
 		}
 	}
 	

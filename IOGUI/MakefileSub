@@ -12,7 +12,7 @@ IOGUI_SWIFTC_FLAGS = $(DEBUG) $($(OS)_EXTRA_FLAGS) $(IOGUI_SWIFT_DEFINES) \
 IOGUI_Src = TitleAndFooterWidget.swift AppInfoWidget.swift MenuWidget.swift \
 	ModulesWidget.swift PopupWidget.swift \
 	BackgroundWidget.swift InputPopupWidget.swift \
-	TextWidget.swift \
+	TextWidget.swift FormWidget.swift \
 	GUITypes.swift CursesHelper.swift
 IOGUI_Src_Path = $(addprefix $(PACKAGE_ROOT_DIR)/IOGUI/IOGUI/, $(IOGUI_Src))
 IOGUI_Obj = $(addsuffix .o, $(basename $(IOGUI_Src_Path)))

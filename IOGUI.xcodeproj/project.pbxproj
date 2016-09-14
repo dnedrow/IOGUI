@@ -17,6 +17,7 @@
 		DE3143DF1D7EF44900717720 /* ModulesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143D41D7EF44900717720 /* ModulesWidget.swift */; };
 		DE3143E01D7EF44900717720 /* PopupWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143D51D7EF44900717720 /* PopupWidget.swift */; };
 		DE3143E11D7EF44900717720 /* TitleAndFooterWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */; };
+		DEC1FDA61D87D92D006948A8 /* FormWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC1FDA51D87D92D006948A8 /* FormWidget.swift */; };
 		DEE3B0771D8766C1000FA7F5 /* TextWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE3B0761D8766C1000FA7F5 /* TextWidget.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		DE3143D41D7EF44900717720 /* ModulesWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModulesWidget.swift; sourceTree = "<group>"; };
 		DE3143D51D7EF44900717720 /* PopupWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupWidget.swift; sourceTree = "<group>"; };
 		DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleAndFooterWidget.swift; sourceTree = "<group>"; };
+		DEC1FDA51D87D92D006948A8 /* FormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWidget.swift; sourceTree = "<group>"; };
 		DEE3B06F1D876418000FA7F5 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		DEE3B0721D87644C000FA7F5 /* Build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = Build.sh; path = Travis/Build.sh; sourceTree = "<group>"; };
 		DEE3B0731D87644C000FA7F5 /* DownloadDocker.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = DownloadDocker.sh; path = Travis/DownloadDocker.sh; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				DE3143D51D7EF44900717720 /* PopupWidget.swift */,
 				DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */,
 				DEE3B0761D8766C1000FA7F5 /* TextWidget.swift */,
+				DEC1FDA51D87D92D006948A8 /* FormWidget.swift */,
 			);
 			path = IOGUI;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				DE3143DB1D7EF44900717720 /* InputPopupWidget.swift in Sources */,
 				DE3143E01D7EF44900717720 /* PopupWidget.swift in Sources */,
 				DE3143DE1D7EF44900717720 /* MenuWidget.swift in Sources */,
+				DEC1FDA61D87D92D006948A8 /* FormWidget.swift in Sources */,
 				DE3143DA1D7EF44900717720 /* GUITypes.swift in Sources */,
 				DEE3B0771D8766C1000FA7F5 /* TextWidget.swift in Sources */,
 				DE3143DF1D7EF44900717720 /* ModulesWidget.swift in Sources */,
