@@ -71,7 +71,7 @@ public struct InputPopupWidget {
 	
 #if swift(>=3)
 #if os(Linux)
-	public init(defaultValue: String, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: InputPopupDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
+	public init(defaultValue: String, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: @escaping InputPopupDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
 	
 		self.popupContent = popupContent
 		self.popupButtons = popupButtons
@@ -82,7 +82,7 @@ public struct InputPopupWidget {
 		self.initWindows()
 	}
 #else
-	public init(defaultValue: String, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: InputPopupDelegate, mainWindow: OpaquePointer) {
+	public init(defaultValue: String, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: @escaping InputPopupDelegate, mainWindow: OpaquePointer) {
 	
 		self.popupContent = popupContent
 		self.popupButtons = popupButtons

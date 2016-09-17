@@ -82,7 +82,7 @@ public struct MenuWidget {
 #if swift(>=3)
 
 #if os(Linux)
-	public init(startRow: Int, widgetSize: Int, choices: [GUIMenuChoices], delegate: MenuChoicesSelectionDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
+	public init(startRow: Int, widgetSize: Int, choices: [GUIMenuChoices], delegate: @escaping MenuChoicesSelectionDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
 	
 		self.startRow = startRow
 		self.widgetRows = widgetSize
@@ -93,7 +93,7 @@ public struct MenuWidget {
 		initWindows()
 	}
 #else
-	public init(startRow: Int, widgetSize: Int, choices: [GUIMenuChoices], delegate: MenuChoicesSelectionDelegate, mainWindow: OpaquePointer) {
+	public init(startRow: Int, widgetSize: Int, choices: [GUIMenuChoices], delegate: @escaping MenuChoicesSelectionDelegate, mainWindow: OpaquePointer) {
 		
 		self.startRow = startRow
 		self.widgetRows = widgetSize

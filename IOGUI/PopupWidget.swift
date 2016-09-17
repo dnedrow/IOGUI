@@ -63,7 +63,7 @@ public struct PopupWidget {
 #if os(Linux)
 	private var buttonWindows: [UnsafeMutablePointer<WINDOW>]!
 	
-	public init(popuptype: GUIPopupTypes, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: MenuChoicesSelectionDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
+	public init(popuptype: GUIPopupTypes, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: @escaping MenuChoicesSelectionDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
 	
 		self.popuptype = popuptype
 		self.popupContent = popupContent
@@ -76,7 +76,7 @@ public struct PopupWidget {
 #else
 	private var buttonWindows: [OpaquePointer]!
 
-	public init(popuptype: GUIPopupTypes, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: MenuChoicesSelectionDelegate, mainWindow: OpaquePointer) {
+	public init(popuptype: GUIPopupTypes, popupContent: String, popupButtons: [String], hasShadow: Bool, popupDelegate: @escaping MenuChoicesSelectionDelegate, mainWindow: OpaquePointer) {
 		
 		self.popuptype = popuptype
 		self.popupContent = popupContent

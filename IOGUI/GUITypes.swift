@@ -93,7 +93,7 @@ public struct GUIWidgets {
 		}
 	}
 	
-	public init(delegate: MainGuiDelegate) {
+	public init(delegate: @escaping MainGuiDelegate) {
 		
 		self.delegate = delegate
 		

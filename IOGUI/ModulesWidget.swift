@@ -84,7 +84,7 @@ public struct ModulesWidget {
 	
 #if swift(>=3)
 #if os(Linux)
-	public init(startRow: Int, widgetSize: Int, leftSideTitle: String, rightSideTitle: String, choices: [GUIModulesChoices], delegate: ModuleChoicesSelectionDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
+	public init(startRow: Int, widgetSize: Int, leftSideTitle: String, rightSideTitle: String, choices: [GUIModulesChoices], delegate: @escaping ModuleChoicesSelectionDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
 	
 		self.startRow = startRow
 		self.widgetRows = widgetSize
@@ -99,7 +99,7 @@ public struct ModulesWidget {
 		initWindows()
 	}
 #else
-	public init(startRow: Int, widgetSize: Int, leftSideTitle: String, rightSideTitle: String, choices: [GUIModulesChoices], delegate: ModuleChoicesSelectionDelegate, mainWindow: OpaquePointer) {
+	public init(startRow: Int, widgetSize: Int, leftSideTitle: String, rightSideTitle: String, choices: [GUIModulesChoices], delegate: @escaping ModuleChoicesSelectionDelegate, mainWindow: OpaquePointer) {
 		
 		self.startRow = startRow
 		self.widgetRows = widgetSize
