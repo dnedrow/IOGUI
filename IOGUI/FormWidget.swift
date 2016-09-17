@@ -52,7 +52,7 @@ public struct GUI_FORM_FIELD {
 					
 					self.formValue = "0.0"
 				}else if(formType! == .DATE_TIME) {
-					self.formValue = "GG/AA/YYYY"
+					self.formValue = "MM/DD/YYYY"
 				}else{
 					self.formValue = ""
 				}
@@ -97,6 +97,9 @@ public struct GUI_FORM_FIELD {
 				self.formValue += appendStr
 			}
 			
+			break
+		case .DATE_TIME:
+			// PASS
 			break
 		default:
 			self.formValue += appendStr
@@ -176,6 +179,17 @@ public struct GUI_FORM_FIELD {
 			}else{
 				replaceStatus = false
 			}
+			break
+		case .DATE_TIME:
+			let splittedRealVal = self.formValue.components(separatedBy: "/")
+			replaceStatus = false
+			
+			if(realIdx == 1 || realIdx == 2 || realIdx == 4 || realIdx == 5 || realIdx > 6) {
+				
+				if(isNum) {
+					replaceStatus = true
+				}
+			}
 			
 			break
 		default:
@@ -211,6 +225,10 @@ public struct GUI_FORM_FIELD {
 	}
 	
 	public mutating func removeLastChar() {
+		
+		if(self.formType == .DATE_TIME) {
+			return
+		}
 		
 		if(self.formValue.characters.count > 0) {
 			
@@ -335,6 +353,9 @@ public struct GUI_FORM_FIELD {
 			
 			self.formValue = "\(intval).\(decimalval)"
 			
+			break
+		case .DATE_TIME:
+			// PASS
 			break
 		default:
 			removeStatus = true
@@ -547,6 +568,8 @@ public struct FormWidget {
 					}
 					
 					self.currentCursorPos = firstBlockLen + 1
+				}else if(self.currentCursorPos == -1 && formFields[idx].formType == .DATE_TIME) {
+					self.currentCursorPos = 1
 				}
 				
 				let splittedStr = self.splitString(text: formFields[idx].formValue, textWidth: valueWidth)
@@ -652,6 +675,22 @@ public struct FormWidget {
 				goToNextField = false
 				self.currentCursorPos = currentFormField.formValue.characters.count
 			}
+		}else if(currentFormField.formType == .DATE_TIME) {
+			
+			if(self.currentCursorPos <= 3) {
+				
+				goToNextField = false
+				self.currentCursorPos = 4
+				
+			}else if(self.currentCursorPos <= 6) {
+				
+				goToNextField = false
+				self.currentCursorPos = 7
+				
+			}else if(self.currentCursorPos >= 7) {
+				
+				goToNextField = true
+			}
 		}
 		
 		if(goToNextField) {
@@ -719,6 +758,7 @@ public struct FormWidget {
 			}else{
 				updateData = true
 			}
+			
 		}else{
 			updateData = true
 		}
@@ -773,8 +813,30 @@ public struct FormWidget {
 		}
 		
 		self.formFields[self.currentFormIdx] = currentField
-		wclear(self.formWindow)
-		drawFormArea()
+		
+		if(currentField.formType == .DATE_TIME) {
+			
+			self.currentCursorPos += 1
+			if(self.currentCursorPos == 3) {
+				
+				self.currentCursorPos = 4
+			}
+			
+			if(self.currentCursorPos == 6) {
+				
+				self.currentCursorPos = 7
+			}
+			
+			if(!checkDateTimeValue()) {
+				
+				wclear(self.formWindow)
+				drawFormArea()
+			}
+		}else{
+			
+			wclear(self.formWindow)
+			drawFormArea()
+		}
 	}
 	
 	mutating func keyEvent(keyCode: Int32) {
@@ -953,5 +1015,79 @@ public struct FormWidget {
 				return (text1, text2, text3)
 			}
 		}
+	}
+	
+	private mutating func checkDateTimeValue() -> Bool {
+		
+		var currentField = self.formFields[self.currentFormIdx]
+		var isUpdated = false
+		
+		if(currentField.formType == .DATE_TIME) {
+			
+			let splittedDatetime = currentField.formValue.components(separatedBy: "/")
+			
+			if(splittedDatetime.count == 3) {
+				
+				var monthval = splittedDatetime[0]
+				var dayval = splittedDatetime[1]
+				var yearval = splittedDatetime[2]
+				
+				if(self.currentCursorPos >= 3) {
+					
+					if let monthIntVal = Int(monthval) {
+					
+						if(monthIntVal > 12 || monthIntVal <= 0) {
+							isUpdated = true
+							monthval = "MM"
+						}
+					
+					}else{
+						isUpdated = true
+						monthval = "MM"
+					}
+				}
+				
+				if(self.currentCursorPos >= 6) {
+					
+					if let dayIntVal = Int(dayval) {
+					
+						if(dayIntVal > 31 || dayIntVal <= 0) {
+							isUpdated = true
+							dayval = "DD"
+						}
+					
+					}else{
+						isUpdated = true
+						dayval = "DD"
+					}
+				}
+				
+				if(self.currentCursorPos >= 11) {
+					
+					if let yearIntVal = Int(yearval) {
+					
+						if(yearIntVal > 9999 || yearIntVal < 1800) {
+							isUpdated = true
+							yearval = "YYYY"
+						}
+					
+					}else{
+						isUpdated = true
+						yearval = "YYYY"
+					}
+				}
+				
+				currentField.formValue = "\(monthval)/\(dayval)/\(yearval)"
+				
+				if(isUpdated) {
+				
+					self.formFields[self.currentFormIdx] = currentField
+					wclear(self.formWindow)
+					drawFormArea()
+				}
+			}
+		}
+		
+		return isUpdated
 	}
 }
