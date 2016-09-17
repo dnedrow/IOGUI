@@ -54,7 +54,7 @@ public struct MenuWidget {
 	
 	private var mainWindow: COpaquePointer
 #endif
-		private var choices: [GUIMenuChoices]
+	private var choices: [GUIMenuChoices]
 	private var selectionDelegate: MenuChoicesSelectionDelegate
 	private var menuAreaWidth: Int32
 #if swift(>=3)
