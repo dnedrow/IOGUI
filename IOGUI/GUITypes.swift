@@ -585,7 +585,7 @@ public struct GUIWidgets {
 			self.resizeAll()
 		}else if(currentKey == Int32(UnicodeScalar("q").value) || currentKey == 27 || currentKey == Int32(UnicodeScalar("Q").value)) {
 			
-			if(self.hasInputPopupWidget()) {
+			if(self.hasInputPopupWidget() || self.hasFormWidget()) {
 
 			#if swift(>=3)
 				
@@ -604,7 +604,7 @@ public struct GUIWidgets {
 			
 		}else if(currentKey == Int32(UnicodeScalar("b").value) || currentKey == Int32(UnicodeScalar("B").value)) {
 			
-			if(self.hasInputPopupWidget()) {
+			if(self.hasInputPopupWidget() || self.hasFormWidget()) {
 
 			#if swift(>=3)
 				
