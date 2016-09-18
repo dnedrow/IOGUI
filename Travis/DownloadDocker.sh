@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #  run_docker.sh
-#  IORunner
+#  IOGUI
 #
 #  Created by ilker özcan on 26/08/16.
 #
