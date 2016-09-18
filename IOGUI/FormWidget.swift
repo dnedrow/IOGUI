@@ -133,7 +133,7 @@ public struct GUI_FORM_FIELD {
 			if(splittedRealVal.count > 0) {
 				
 				var intvalStr = splittedRealVal[0]
-				var decimalvalStr = splittedRealVal[1]
+				let decimalvalStr = splittedRealVal[1]
 				let intvalLen = intvalStr.characters.count
 				
 				if(intvalLen + 1 == index) {
@@ -181,7 +181,6 @@ public struct GUI_FORM_FIELD {
 			}
 			break
 		case .DATE_TIME:
-			let splittedRealVal = self.formValue.components(separatedBy: "/")
 			replaceStatus = false
 			
 			if(realIdx == 1 || realIdx == 2 || realIdx == 4 || realIdx == 5 || realIdx > 6) {
@@ -391,29 +390,21 @@ public struct FormWidget {
 	var widgetRows: Int
 	
 	private var startRow: Int
-	#if swift(>=3)
 	
 	#if os(Linux)
 	private var mainWindow: UnsafeMutablePointer<WINDOW>
 	#else
 	private var mainWindow: OpaquePointer
 	#endif
-	#elseif swift(>=2.2) && os(OSX)
-	
-	private var mainWindow: COpaquePointer
-	#endif
+
 	private var formFields: [GUI_FORM_FIELD]
 	private var formAreaWidth: Int32
-	#if swift(>=3)
 	#if os(Linux)
 	private var formWindow: UnsafeMutablePointer<WINDOW>!
 	#else
 	private var formWindow: OpaquePointer!
 	#endif
-	#elseif swift(>=2.2) && os(OSX)
-	
-	private var formWindow: COpaquePointer!
-	#endif
+
 	private var currentFormIdx = 0
 	private var firstFormIdx = 0
 	private var formLineCount = 0
@@ -426,8 +417,6 @@ public struct FormWidget {
 			return self.formFields[currentFormIdx]
 		}
 	}
-	
-	#if swift(>=3)
 	
 	#if os(Linux)
 	public init(startRow: Int, widgetSize: Int, fields: [GUI_FORM_FIELD], mainWindow: UnsafeMutablePointer<WINDOW>) {
@@ -467,28 +456,6 @@ public struct FormWidget {
 			}
 		}
 		
-		initWindows()
-	}
-	#endif
-	#elseif swift(>=2.2) && os(OSX)
-	
-	public init(startRow: Int, widgetSize: Int, fields: [GUI_FORM_FIELD], mainWindow: COpaquePointer) {
-	
-		self.startRow = startRow
-		self.widgetRows = widgetSize
-		self.formFields = fields
-		self.mainWindow = mainWindow
-		self.formAreaWidth = 2
-	
-		for field in fields {
-	
-			let fieldWidth = field.formName.characters.count + 2
-	
-			if(formKeyWidth < fieldWidth) {
-				formKeyWidth = fieldWidth
-			}
-		}
-	
 		initWindows()
 	}
 	#endif
@@ -846,13 +813,7 @@ public struct FormWidget {
 			self.formSelected()
 			break
 		case KEY_UP:
-			#if swift(>=3)
-				
-				self.updateSelectedChoice(isUp: true)
-			#elseif swift(>=2.2) && os(OSX)
-				
-				self.updateSelectedChoice(true)
-			#endif
+			self.updateSelectedChoice(isUp: true)
 			break
 		case KEY_DOWN:
 			self.updateSelectedChoice()
@@ -922,7 +883,6 @@ public struct FormWidget {
 				
 				if(self.currentCursorPos > (textWidth - 1)) {
 					
-					let cursorPos = textWidth - 1
 					let rangeStart = self.currentCursorPos - charCount
 					let endIdx = text.endIndex
 					
