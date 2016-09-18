@@ -21,21 +21,14 @@ public struct TextWidget {
 	private var text: String
 	private var color: WidgetUIColor
 	
-	#if swift(>=3)
 	#if os(Linux)
 	private var mainWindow: UnsafeMutablePointer<WINDOW>
 	
-	private var textWindow: UnsafeMutablePointer<WINDOW>!
+	private var textWindow: UnsafeMutablePointer<WINDOW>?
 	#else
 	private var mainWindow: OpaquePointer
 	
-	private var textWindow: OpaquePointer!
-	#endif
-	#elseif swift(>=2.2) && os(OSX)
-	
-	private var mainWindow: COpaquePointer
-	
-	private var textWindow: COpaquePointer!
+	private var textWindow: OpaquePointer?
 	#endif
 	
 	
@@ -46,7 +39,6 @@ public struct TextWidget {
 		}
 	}
 	
-	#if swift(>=3)
 	#if os(Linux)
 	public init(startRow: Int, text: String, mainWindow: UnsafeMutablePointer<WINDOW>, color: WidgetUIColor) {
 	
@@ -66,28 +58,16 @@ public struct TextWidget {
 		self.initWindows()
 	}
 	#endif
-	#elseif swift(>=2.2) && os(OSX)
-	
-	public init(startRow: Int, text: String, mainWindow: COpaquePointer, color: WidgetUIColor) {
-	
-		self.startRow = startRow
-		self.text = text
-		self.mainWindow = mainWindow
-		self.color = color
-		self.initWindows()
-	}
-	#endif
 	
 	mutating func initWindows() {
 		
-		wmove(mainWindow, 0, 0)
 		self.textWindow = subwin(mainWindow, 1, COLS, Int32(self.startRow), 0)
-		#if os(Linux)
-			wbkgd(textWindow, UInt(COLOR_PAIR(self.color.rawValue)))
-		#else
-			wbkgd(textWindow, UInt32(COLOR_PAIR(self.color.rawValue)))
-		#endif
-		keypad(textWindow, true)
+	#if os(Linux)
+		wbkgd(textWindow!, UInt(COLOR_PAIR(self.color.rawValue)))
+	#else
+		wbkgd(textWindow!, UInt32(COLOR_PAIR(self.color.rawValue)))
+	#endif
+		keypad(textWindow!, true)
 	}
 	
 	func draw() {
@@ -104,19 +84,19 @@ public struct TextWidget {
 	
 	private func drawText() {
 		
-		if(self.textWindow == nil) {
+		guard self.textWindow != nil else {
 			return
 		}
 		
 		let textString = "   \(self.text)"
-		AddStringToWindow(normalString: textString, window: textWindow)
-		wrefresh(textWindow)
+		AddStringToWindow(normalString: textString, window: textWindow!)
+		wrefresh(textWindow!)
 	}
 	
 	public mutating func updateText(textString: String) {
 		
 		self.text = textString
-		wclear(textWindow)
+		wclear(textWindow!)
 		drawText()
 	}
 	
@@ -124,8 +104,8 @@ public struct TextWidget {
 		
 		if(self.textWindow != nil) {
 			
-			wclear(textWindow)
-			delwin(textWindow)
+			wclear(textWindow!)
+			delwin(textWindow!)
 			self.textWindow = nil
 		}
 		

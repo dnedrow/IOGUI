@@ -36,6 +36,7 @@
 		DE3143D41D7EF44900717720 /* ModulesWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModulesWidget.swift; sourceTree = "<group>"; };
 		DE3143D51D7EF44900717720 /* PopupWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupWidget.swift; sourceTree = "<group>"; };
 		DE3143D61D7EF44900717720 /* TitleAndFooterWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleAndFooterWidget.swift; sourceTree = "<group>"; };
+		DEA8C5511D8EBCA5001EFC7A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DEC1FDA51D87D92D006948A8 /* FormWidget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormWidget.swift; sourceTree = "<group>"; };
 		DEE3B06F1D876418000FA7F5 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		DEE3B0721D87644C000FA7F5 /* Build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = Build.sh; path = Travis/Build.sh; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		DE3143B01D7EF2C800717720 = {
 			isa = PBXGroup;
 			children = (
+				DEA8C5511D8EBCA5001EFC7A /* README.md */,
 				DEE3B06F1D876418000FA7F5 /* .travis.yml */,
 				DE3143BC1D7EF2C900717720 /* IOGUI */,
 				DEE3B0711D87643D000FA7F5 /* Travis */,

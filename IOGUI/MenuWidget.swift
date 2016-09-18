@@ -32,41 +32,30 @@ public struct GUIMenuChoices {
 	}
 }
 
-#if swift(>=3)
 public typealias MenuChoicesSelectionDelegate = (_ selectedChoiceIdx: Int) -> ()
-#else
-public typealias MenuChoicesSelectionDelegate = (selectedChoiceIdx: Int) -> ()
-#endif
 
 public struct MenuWidget {
 	
 	var widgetRows: Int
 	
 	private var startRow: Int
-#if swift(>=3)
 	
 #if os(Linux)
 	private var mainWindow: UnsafeMutablePointer<WINDOW>
 #else
 	private var mainWindow: OpaquePointer
 #endif
-#elseif swift(>=2.2) && os(OSX)
-	
-	private var mainWindow: COpaquePointer
-#endif
+
 	private var choices: [GUIMenuChoices]
 	private var selectionDelegate: MenuChoicesSelectionDelegate
 	private var menuAreaWidth: Int32
-#if swift(>=3)
+
 #if os(Linux)
 	private var menuWindow: UnsafeMutablePointer<WINDOW>!
 #else
 	private var menuWindow: OpaquePointer!
 #endif
-#elseif swift(>=2.2) && os(OSX)
-	
-	private var menuWindow: COpaquePointer!
-#endif
+
 	private var currentChoiceIdx = 0
 	private var firstChoiceIdx = 0
 	private var choicesLineCount = 0
@@ -79,7 +68,12 @@ public struct MenuWidget {
 		}
 	}
 	
-#if swift(>=3)
+	public var getAllChoices: [GUIMenuChoices] {
+		
+		get {
+			return self.choices
+		}
+	}
 
 #if os(Linux)
 	public init(startRow: Int, widgetSize: Int, choices: [GUIMenuChoices], delegate: @escaping MenuChoicesSelectionDelegate, mainWindow: UnsafeMutablePointer<WINDOW>) {
@@ -95,19 +89,6 @@ public struct MenuWidget {
 #else
 	public init(startRow: Int, widgetSize: Int, choices: [GUIMenuChoices], delegate: @escaping MenuChoicesSelectionDelegate, mainWindow: OpaquePointer) {
 		
-		self.startRow = startRow
-		self.widgetRows = widgetSize
-		self.choices = choices
-		self.selectionDelegate = delegate
-		self.mainWindow = mainWindow
-		self.menuAreaWidth = 2
-		initWindows()
-	}
-#endif
-#elseif swift(>=2.2) && os(OSX)
-	
-	public init(startRow: Int, widgetSize: Int, choices: [GUIMenuChoices], delegate: MenuChoicesSelectionDelegate, mainWindow: COpaquePointer) {
-	
 		self.startRow = startRow
 		self.widgetRows = widgetSize
 		self.choices = choices
@@ -240,11 +221,7 @@ public struct MenuWidget {
 	
 	func choiceSelected() {
 		
-	#if swift(>=3)
 		selectionDelegate(selectedChoiceCode)
-	#else
-		selectionDelegate(selectedChoiceIdx: selectedChoiceCode)
-	#endif
 	}
 	
 	mutating func keyEvent(keyCode: Int32) {
@@ -255,13 +232,7 @@ public struct MenuWidget {
 			self.choiceSelected()
 			break
 		case KEY_UP:
-		#if swift(>=3)
-			
 			self.updateSelectedChoice(isUp: true)
-		#elseif swift(>=2.2) && os(OSX)
-			
-			self.updateSelectedChoice(true)
-		#endif
 			break
 		case KEY_DOWN:
 			self.updateSelectedChoice()

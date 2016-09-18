@@ -46,26 +46,16 @@ public enum MainGuiActions {
 	case BACK
 }
 
-#if swift(>=3)
 public typealias MainGuiDelegate = (_ action: MainGuiActions) -> ()
-public typealias MainGuiKeyDelegate = (_ keyCode: Int32) -> ()
-#else
-public typealias MainGuiDelegate = (action: MainGuiActions) -> ()
-public typealias MainGuiKeyDelegate = (keyCode: Int32) -> ()
-#endif
+public typealias MainGuiKeyDelegate = (_ keyCode: Int32) -> Bool
 
 public struct GUIWidgets {
 	
 	private var delegate: MainGuiDelegate
-#if swift(>=3)
 #if os(Linux)
 	public var mainWindow: UnsafeMutablePointer<WINDOW>
 #else
 	public var mainWindow: OpaquePointer
-#endif
-#else
-	
-	public var mainWindow: COpaquePointer
 #endif
 	
 	public var titleAndFooter: TitleAndFooterWidget?
@@ -374,6 +364,7 @@ public struct GUIWidgets {
 		
 		if(self.textWidgets != nil) {
 		
+			wclear(mainWindow)
 			for var tWidget in self.textWidgets! {
 				
 				tWidget.deinitWidget()
@@ -488,59 +479,30 @@ public struct GUIWidgets {
 		
 		if(popup != nil) {
 			
-		#if swift(>=3)
-			
 			popup?.keyEvent(keyCode: keycode)
-		#elseif swift(>=2.2) && os(OSX)
-				
-			popup?.keyEvent(keycode)
-		#endif
 			return
 		}
 		
 		if(inputPopup != nil) {
 			
-		#if swift(>=3)
-			
 			inputPopup?.keyEvent(keyCode: keycode)
-		#elseif swift(>=2.2) && os(OSX)
-			
-			inputPopup?.keyEvent(keycode)
-		#endif
 			return
 		}
 		
 		if(menu != nil) {
 			
-		#if swift(>=3)
-			
+
 			menu?.keyEvent(keyCode: keycode)
-		#elseif swift(>=2.2) && os(OSX)
-			
-			menu?.keyEvent(keycode)
-		#endif
 		}
 		
 		if(modules != nil) {
 			
-		#if swift(>=3)
-			
 			modules?.keyEvent(keyCode: keycode)
-		#elseif swift(>=2.2) && os(OSX)
-			
-			modules?.keyEvent(keycode)
-		#endif
 		}
 		
 		if(formWidget != nil) {
 			
-			#if swift(>=3)
-				
-				formWidget?.keyEvent(keyCode: keycode)
-			#elseif swift(>=2.2) && os(OSX)
-				
-				formWidget?.keyEvent(keycode)
-			#endif
+			formWidget?.keyEvent(keyCode: keycode)
 		}
 	}
 	
@@ -573,10 +535,13 @@ public struct GUIWidgets {
 			
 		}else{
 			
-			self.sendKeyEventToWidget(keycode: currentKey)
-			
 			if(self.keyDelegate != nil) {
-				self.keyDelegate!(currentKey)
+				
+				if(self.keyDelegate!(currentKey)) {
+					self.sendKeyEventToWidget(keycode: currentKey)
+				}
+			}else{
+				self.sendKeyEventToWidget(keycode: currentKey)
 			}
 		}
 	#else
@@ -587,52 +552,29 @@ public struct GUIWidgets {
 			
 			if(self.hasInputPopupWidget() || self.hasFormWidget()) {
 
-			#if swift(>=3)
-				
 				self.sendKeyEventToWidget(keycode: currentKey)
-			#elseif swift(>=2.2) && os(OSX)
-					
-				self.sendKeyEventToWidget(currentKey)
-			#endif
 			}else{
-			#if swift(>=3)
 				self.delegate(MainGuiActions.EXIT)
-			#else
-				self.delegate(action: MainGuiActions.EXIT)
-			#endif
 			}
 			
 		}else if(currentKey == Int32(UnicodeScalar("b").value) || currentKey == Int32(UnicodeScalar("B").value)) {
 			
 			if(self.hasInputPopupWidget() || self.hasFormWidget()) {
 
-			#if swift(>=3)
-				
 				self.sendKeyEventToWidget(keycode: currentKey)
-			#elseif swift(>=2.2) && os(OSX)
-				
-				self.sendKeyEventToWidget(currentKey)
-			#endif
 			}else{
-			#if swift(>=3)
 				self.delegate(MainGuiActions.BACK)
-			#else
-				self.delegate(action: MainGuiActions.BACK)
-			#endif
 			}
 
 		}else{
 			
-		#if swift(>=3)
-			
-			self.sendKeyEventToWidget(keycode: currentKey)
-		#elseif swift(>=2.2) && os(OSX)
-			
-			self.sendKeyEventToWidget(currentKey)
-		#endif
-			
 			if(self.keyDelegate != nil) {
-				self.keyDelegate!(currentKey)
+				if(self.keyDelegate!(currentKey)) {
+					
+					self.sendKeyEventToWidget(keycode: currentKey)
+				}
+			}else{
+				self.sendKeyEventToWidget(keycode: currentKey)
 			}
 		}
 	#endif
@@ -647,19 +589,10 @@ public struct GUIWidgets {
 	
 	public mutating func waitPopup(waitForSecond: UInt) {
 		
-	#if swift(>=3)
 		let loopStartDate: UInt = UInt(Date().timeIntervalSince1970)
-	#else
-		
-		let loopStartDate: UInt = UInt(NSDate().timeIntervalSince1970)
-	#endif
 		repeat {
 		
-		#if swift(>=3)
 			let currentDate: UInt = UInt(Date().timeIntervalSince1970)
-		#else
-			let currentDate: UInt = UInt(NSDate().timeIntervalSince1970)
-		#endif
 			let dateDif = currentDate - loopStartDate
 			
 			if(dateDif > waitForSecond) {

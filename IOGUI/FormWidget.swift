@@ -418,6 +418,13 @@ public struct FormWidget {
 		}
 	}
 	
+	public var getAllFields: [GUI_FORM_FIELD] {
+		
+		get {
+			return self.formFields
+		}
+	}
+	
 	#if os(Linux)
 	public init(startRow: Int, widgetSize: Int, fields: [GUI_FORM_FIELD], mainWindow: UnsafeMutablePointer<WINDOW>) {
 	
